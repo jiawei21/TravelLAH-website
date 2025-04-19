@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | TravelLAH</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/globe--v1.png">
+    
+    <!-- External CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #06b6d4;
+            --secondary-color: #0891b2;
+            --dark-color: #083344;
+            --light-color: #ecfeff;
+            --accent-color: #f59e0b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background-color: rgba(8, 51, 68, 0.95);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .navbar-brand i {
+            color: var(--accent-color);
+            margin-right: 5px;
+        }
+        
+        .navbar-dark .navbar-nav .nav-link {
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: 0.3s ease;
+        }
+        
+        .navbar-dark .navbar-nav .nav-link:hover,
+        .navbar-dark .navbar-nav .nav-link.active {
+            color: var(--accent-color);
+        }
+        
+        /* About Hero Section */
+        .about-hero {
+            background: linear-gradient(rgba(8, 51, 68, 0.8), rgba(8, 51, 68, 0.8)), url('picture/ab1.jpg') center/cover no-repeat;
+            color: white;
+            padding: 12rem 0 6rem;
+            text-align: center;
+        }
+        
+        .about-hero h1 {
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-hero p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+        }
+        
+        /* About Content */
+        .about-content {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        .about-text {
+            margin-bottom: 2rem;
+        }
+        
+        .value-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .team-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .team-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .team-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .team-position {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .team-social a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Timeline Section */
+        .timeline-section {
+            padding: 5rem 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--light-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            top: 15px;
+            right: -10px;
+            z-index: 1;
+        }
+        
+        .timeline-item.left {
+            left: 0;
+        }
+        
+        .timeline-item.right {
+            left: 50%;
+        }
+        
+        .timeline-item.right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+        
+        footer h5 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--light-color);
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .quick-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .quick-links li {
+            margin-bottom: 10px;
+        }
+        
+        .quick-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+        
+        .quick-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info i {
+            margin-right: 15px;
+            font-size: 18px;
+            color: var(--accent-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Animation Classes */
+        .animate-fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item.right {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+                top: 15px;
+            }
+            
+            .timeline-item.right::after {
+                left: 21px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="homepage.html">
+                <i class="fas fa-globe-americas"></i> TravelLAH
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Destination.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Traveltips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="Aboutus.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-4 animate-fade-in">About TravelLAH</h1>
+            <p class="lead mb-0 animate-fade-in delay-1">Discover our story and the passion behind creating unforgettable travel experiences</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src= 'picture/ab2.jpg' alt="About TravelLAH" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="section-title">Our Story</h2>
+                    <div class="about-text">
+                        <p>TravelLAH emerged from a simple passion: to help travelers experience the world authentically, responsibly, and joyfully. The "LAH" in our name represents our Malaysian roots and our friendly, approachable philosophy.</p>
+                        <p>What began as a small blog sharing travel tips has grown into a comprehensive platform dedicated to helping adventurers of all kinds plan their perfect journeys. Whether you're a solo backpacker, a luxury traveler, or a family looking for your next vacation destination, we're here to make your travel dreams come true.</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="fw-bold">Our Mission & Vision</h2>
+                    <div class="mx-auto" style="width: 70px; height: 4px; background-color: #f59e0b; margin-bottom: 2rem;"></div>
+                    <p class="lead mb-0 mx-auto" style="max-width: 700px;">We strive to inspire and empower travelers by providing authentic information, responsible travel practices, and personalized guidance for unforgettable adventures.</p>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-compass"></i>
+                        </div>
+                        <h4>Authentic Experiences</h4>
+                        <p>We believe travel should be about genuine connections and experiences that transform your perspective on the world.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h4>Responsible Tourism</h4>
+                        <p>We promote sustainable travel practices that respect local cultures and preserve the environment for future generations.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>Personalized Guidance</h4>
+                        <p>We understand that every traveler is unique, and we're committed to providing tailored advice for your specific needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+ 
+    <!-- Why Choose Us -->
+    <section class="about-content bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="fw-bold">Why Choose TravelLAH</h2>
+                    <div class="mx-auto" style="width: 70px; height: 4px; background-color: #f59e0b; margin-bottom: 2rem;"></div>
+                    <p class="lead mx-auto" style="max-width: 700px;">What sets us apart in helping you plan your perfect adventure</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="value-card text-center">
+                        <div class="value-icon mx-auto">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h4>Local Expertise</h4>
+                        <p>Our team has first-hand experience with destinations across the globe, offering authentic insights you won't find elsewhere.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="value-card text-center">
+                        <div class="value-icon mx-auto">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
+                        <h4>Personalized Approach</h4>
+                        <p>We understand that each traveler is unique, and we tailor our recommendations to your specific interests and needs.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="value-card text-center">
+                        <div class="value-icon mx-auto">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Passion for Travel</h4>
+                        <p>We're not just a travel website—we're fellow travelers who genuinely care about helping you create unforgettable experiences.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-4 mb-4">
+                    <div class="value-card text-center">
+                        <div class="value-icon mx-auto">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4>Community Support</h4>
+                        <p>Join our community of like-minded travelers who share tips, stories, and advice to enhance your adventures.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="value-card text-center">
+                        <div class="value-icon mx-auto">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Trusted Information</h4>
+                        <p>Our content is thoroughly researched and regularly updated to ensure you have the most reliable travel information.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="value-card text-center">
+                        <div class="value-icon mx-auto">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Innovative Solutions</h4>
+                        <p>We're constantly developing new ways to make travel planning easier, more enjoyable, and more accessible for everyone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5" style="background-color: var(--primary-color);">
+        <div class="container text-center py-4">
+            <h2 class="fw-bold text-white mb-3">Ready to Start Your Adventure?</h2>
+            <p class="lead text-white mb-4">Let us help you plan your perfect travel experience today!</p>
+            <div>
+                <a href="contactus.html" class="btn btn-light btn-lg me-2 px-4">Contact Us</a>
+                <a href="Destination.html" class="btn btn-outline-light btn-lg px-4">Explore Destinations</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5>TravelLAH</h5>
+                    <p>Discover the World, the LAH Way.</p>
+                    <p class="mb-4">Your trusted partner in creating unforgettable travel experiences and adventures around the globe.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/groups/808466519338641"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/TravelAndLove"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/travel/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@IslandHopperTV/videos"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+        
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="quick-links">
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="Destination.html">Destinations</a></li>
+                        <li><a href="Traveltips.html">Travel Tips</a></li>
+                        <li><a href="Aboutus.html">About Us</a></li>
+                        <li><a href="contactus.html">Contact Us</a></li>
+                    </ul>
+                </div>
+        
+                <div class="col-lg-5 col-md-12">
+                    <h5>Contact Info</h5>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Jalan Universiti 31900 Kampar,Perak</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+605-468 8888</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@TravelLAH.com</span>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelLAH. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/cookies.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

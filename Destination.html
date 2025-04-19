@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destinations | TravelLAH</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/globe--v1.png">
+  
+  <!-- External CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #00796b;
+      --primary-dark: #004d40;
+      --primary-light: #b2dfdb;
+      --accent: #ffc107;
+      --light-bg: #f5f5f5;
+      --white: #ffffff;
+      --text-dark: #333333;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text-dark);
+      background-color: var(--light-bg);
+      overflow-x: hidden;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background-color: rgba(0, 77, 64, 0.9);
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--white);
+    }
+    
+    .navbar-nav .nav-link {
+      color: var(--white);
+      margin: 0 10px;
+      font-weight: 500;
+      position: relative;
+      padding: 5px 0;
+    }
+    
+    .navbar-nav .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      height: 80vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('picture/1.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 50px;
+    }
+    
+    .hero-section h1 {
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+    
+    .btn-explore {
+      background-color: var(--accent);
+      color: var(--text-dark);
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-explore:hover {
+      background-color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Animation Classes */
+    .animate-fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    .delay-1 {
+      animation-delay: 0.3s;
+    }
+    
+    .delay-2 {
+      animation-delay: 0.6s;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Travel Types Section */
+    .travel-types-section {
+      padding: 50px 0;
+      text-align: center;
+    }
+    
+    .section-title {
+      position: relative;
+      margin-bottom: 50px;
+      color: var(--primary-dark);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 3px;
+      background-color: var(--accent);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .travel-types {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin: 30px 0;
+    }
+    
+    .travel-type {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--primary-light), var(--primary));
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .travel-type i {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+    
+    .travel-type-text {
+      font-weight: 600;
+    }
+    
+    .travel-type:hover,
+    .travel-type.active {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(145deg, var(--primary), var(--primary-dark));
+    }
+
+    /* Countries Grid */
+    .countries-section {
+      padding: 30px 0 80px;
+      transition: opacity 0.3s ease;
+    }
+    
+    .countries {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .country {
+      background-color: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      height: 100%;
+      cursor: pointer;
+    }
+    
+    .country:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .country-img-container {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .country-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .country:hover .country-img {
+      transform: scale(1.1);
+    }
+    
+    .country-info {
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .country-name {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--primary-dark);
+    }
+    
+    .country-description {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    
+    .btn-details {
+      display: inline-block;
+      padding: 8px 20px;
+      background-color: var(--primary);
+      color: var(--white);
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    .btn-details:hover {
+      background-color: var(--primary-dark);
+      color: var(--white);
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: var(--primary-dark);
+      color: var(--white);
+      padding: 60px 0 20px;
+    }
+    
+    footer h5 {
+      font-weight: 700;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    footer h5::after {
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 2px;
+      background-color: var(--accent);
+      bottom: 0;
+      left: 0;
+    }
+    
+    footer p {
+      color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .social-icons {
+      margin-top: 20px;
+    }
+    
+    .social-icons a {
+      display: inline-block;
+      margin-right: 15px;
+      color: var(--white);
+      font-size: 18px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      background-color: var(--accent);
+      color: var(--text-dark);
+      transform: translateY(-3px);
+    }
+    
+    .quick-links {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .quick-links li {
+      margin-bottom: 10px;
+    }
+    
+    .quick-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .quick-links a:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+    
+    .contact-info {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    
+    .contact-info i {
+      color: var(--accent);
+      margin-right: 15px;
+      margin-top: 5px;
+    }
+    
+    .footer-bottom {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 991px) {
+      .hero-section {
+        height: 70vh;
+      }
+      
+      .travel-type {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-section {
+        height: 60vh;
+      }
+      
+      .travel-types {
+        gap: 20px;
+      }
+      
+      .travel-type {
+        width: 130px;
+        height: 130px;
+      }
+      
+      .travel-type i {
+        font-size: 28px;
+      }
+      
+      .countries {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .travel-types {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="homepage.html">
+        <i class="fas fa-globe-americas"></i> TravelLAH
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="Destination.html">Destinations</a></li>
+          <li class="nav-item"><a class="nav-link" href="Traveltips.html">Travel Tips</a></li>
+          <li class="nav-item"><a class="nav-link" href="Aboutus.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="home">
+    <div class="container">
+      <h1 class="display-3 fw-bold mb-4 animate-fade-in">Discover Your Next Adventure</h1>
+      <p class="lead mb-5 animate-fade-in delay-1">Explore breathtaking destinations and create unforgettable memories</p>
+      <a href="#destinations" class="btn btn-explore animate-fade-in delay-2">Explore Destinations</a>
+    </div>
+  </section>
+
+  <!-- Travel Types Section -->
+  <section class="travel-types-section" id="destinations">
+    <div class="container">
+      <h2 class="section-title">Choose Your Travel Destination Style</h2>
+      <div class="travel-types">
+        <div class="travel-type active" onclick="showCountries('adventure')">
+          <i class="fas fa-hiking"></i>
+          <span class="travel-type-text">Nature and Aventure Travel</span>
+        </div>
+        <div class="travel-type" onclick="showCountries('beach')">
+          <i class="fas fa-umbrella-beach"></i>
+          <span class="travel-type-text">Relaxing Getaways</span>
+        </div>
+        <div class="travel-type" onclick="showCountries('culture')">
+          <i class="fas fa-landmark"></i>
+          <span class="travel-type-text">Urban and Cutural Cities Travel</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Countries Section -->
+  <section class="countries-section">
+    <div class="countries" id="countries">
+      <!-- Country blocks will go here -->
+    </div>
+  </section>
+
+ <!-- Footer -->
+ <footer>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+              <h5>TravelLAH</h5>
+              <p>Discover the World, the LAH Way.</p>
+              <p class="mb-4">Your trusted partner in creating unforgettable travel experiences and adventures around the globe.</p>
+              <div class="social-icons">
+                  <a href="https://www.facebook.com/groups/808466519338641"><i class="fab fa-facebook"></i></a>
+                  <a href="https://x.com/TravelAndLove"><i class="fab fa-x-twitter"></i></a>
+                  <a href="https://www.instagram.com/travel/"><i class="fab fa-instagram"></i></a>
+                  <a href="https://www.youtube.com/@IslandHopperTV/videos"><i class="fab fa-youtube"></i></a>
+              </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+              <h5>Quick Links</h5>
+              <ul class="quick-links">
+                  <li><a href="homepage.html">Home</a></li>
+                  <li><a href="Destination.html">Destinations</a></li>
+                  <li><a href="Traveltips.html">Travel Tips</a></li>
+                  <li><a href="Aboutus.html">About Us</a></li>
+                  <li><a href="contactus.html">Contact Us</a></li>
+              </ul>
+          </div>
+
+          <div class="col-lg-5 col-md-12">
+              <h5>Contact Info</h5>
+              <div class="contact-info">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <span>Jalan Universiti 31900 Kampar,Perak</span>
+              </div>
+              <div class="contact-info">
+                  <i class="fas fa-phone"></i>
+                  <span>+605-468 8888</span>
+              </div>
+              <div class="contact-info">
+                  <i class="fas fa-envelope"></i>
+                  <span>info@TravelLAH.com</span>
+              </div>
+          </div>
+      </div>
+
+      <div class="footer-bottom">
+          <p>&copy; 2025 TravelLAH. All rights reserved.</p>
+      </div>
+  </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/cookies.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Country data with expanded information
+    const countryData = {
+      adventure: [
+        { 
+          name: "Patagonia", 
+          image: 'picture/p1.jpg', 
+          description: "Experience the edge of the world dramatic mountains, pristine glaciers, vast wilderness, and extraordinary wildlife."
+        },
+        { 
+          name: "The Azores", 
+          image: 'picture/t1.jpg', 
+          description: "Experience Portugal's paradise archipelago lush green landscapes, volcanic wonders, azure lakes, and vibrant marine life."
+        },
+        { 
+          name: "Jeju Island", 
+          image: 'picture/j1.webp', 
+          description: "Experience Korea's island paradise volcanic landscapes, pristine beaches, lush forests, and unique cultural heritage."
+        },
+      ],
+      beach: [
+        { 
+          name: "Bali", 
+          image: 'picture/b1.webp', 
+          description: "Experience the Island of the Gods lush terraced rice fields, sacred temples, pristine beaches, and vibrant culture await.",
+        },
+        { 
+          name: "Phuket", 
+          image: 'picture/phuket.jpg', 
+          description: "Experience Thailand's largest island stunning beaches, vibrant nightlife, and rich cultural heritage."
+        },
+        { 
+          name: "Maldives", 
+          image: 'picture/maldives.jpg', 
+          description: "Discover whitewashed buildings perched on cliffs overlooking the breathtaking Aegean Sea."
+        },
+      ],
+      culture: [
+        { 
+          name: "Tokyo", 
+          image: 'picture/tk1.jpg', 
+          description: "Experience traditional Japanese culture with serene temples, beautiful gardens, and authentic tea ceremonies."
+        },
+        { 
+          name: "Paris", 
+          image: 'picture/pr1.jpg', 
+          description: "Where historic elegance meets artistic splendor. Immerse yourself in a city of romance, captivating culture, world-class cuisine, and breathtaking architectural masterpieces."
+        },
+        { 
+          name: "Nördlingen", 
+          image: 'picture/n1.jpg', 
+          description: "The real-world inspiration for Attack on Titan's walled city. Discover a perfectly preserved medieval town inside a meteor crater, with its intact city walls that inspired the iconic anime series."
+        },
+      ]
+    };
+  
+
+    function showCountries(type) {
+      const container = document.getElementById("countries");
+      container.style.opacity = 0;
+      
+      // Update active state on travel type buttons
+      document.querySelectorAll('.travel-type').forEach(el => el.classList.remove('active'));
+      event.target.closest('.travel-type').classList.add('active');
+      
+      setTimeout(() => {
+        container.innerHTML = '';
+        countryData[type].forEach(country => {
+          const div = document.createElement('div');
+          div.className = 'country';
+          
+          // Create the HTML structure for each country card
+          div.innerHTML = `
+            <div class="country-img-container">
+              <img src="${country.image}" alt="${country.name}" class="country-img">
+            </div>
+            <div class="country-info">
+              <h3 class="country-name">${country.name}</h3>
+              <p class="country-description">${country.description}</p>
+              <a href="${country.url || '#'}" class="btn-details">Explore More</a>
+            </div>
+          `;
+          
+          if (country.name === "Maldives") {
+            div.onclick = () => window.location.href = 'countryhtml/maldives.html';
+          }
+          else  if (country.name === "Phuket") {
+            div.onclick = () => window.location.href = 'countryhtml/phuket.html';
+          }
+          else  if (country.name === "Bali") {
+            div.onclick = () => window.location.href = 'countryhtml/bali.html';
+          }
+          else  if (country.name === "Jeju Island") {
+            div.onclick = () => window.location.href = 'countryhtml/jejuisland.html';
+          }
+          else  if (country.name === "Patagonia") {
+            div.onclick = () => window.location.href = 'countryhtml/patagonia.html';
+          }
+          else  if (country.name === "The Azores") {
+            div.onclick = () => window.location.href = 'countryhtml/theazores.html';
+          }
+          else  if (country.name === "Paris") {
+            div.onclick = () => window.location.href = 'countryhtml/Paris.html';
+          }
+          else  if (country.name === "Tokyo") {
+            div.onclick = () => window.location.href = 'countryhtml/Tokyo.html';
+          }
+          else {
+            div.onclick = () => window.location.href = 'countryhtml/nordlingen.html';
+          }
+          
+          container.appendChild(div);
+        });
+        container.style.opacity = 1;
+      }, 300);
+    }
+
+    // Initialize with adventure travel selected
+    window.onload = () => {
+      showCountries('adventure');
+      
+      // Navbar color change on scroll
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+          document.querySelector('.navbar').style.background = 'rgba(0, 77, 64, 1)';
+          document.querySelector('.navbar').style.padding = '10px 0';
+        } else {
+          document.querySelector('.navbar').style.background = 'rgba(0, 77, 64, 0.9)';
+          document.querySelector('.navbar').style.padding = '15px 0';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

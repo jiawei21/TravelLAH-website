@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Tips | TravelLAH</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/000000/globe--v1.png">
+    
+    <!-- External CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Navigation styles */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        /* Hero section styles */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('picture/tt10.png') center/cover no-repeat;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .animate-fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .btn-explore {
+            background-color: #FF6B6B;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-explore:hover {
+            background-color: #FF5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: #fff;
+        }
+        
+        /* Travel Tips Sections */
+        .tips-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: #FF6B6B;
+        }
+        
+        .tip-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .tip-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .tip-card .card-body {
+            padding: 25px;
+        }
+        
+        .tip-card .card-title {
+            color: #333;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .tip-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .tip-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .tip-list li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: #FF6B6B;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Footer styles */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        footer h5 {
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        footer h5:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #FF6B6B;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            margin-right: 10px;
+            color: #fff;
+            transition: 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: #FF6B6B;
+        }
+        
+        .quick-links {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .quick-links li {
+            margin-bottom: 10px;
+        }
+        
+        .quick-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .quick-links a:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .contact-info i {
+            width: 25px;
+            color: #FF6B6B;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="homepage.html">
+                <i class="fas fa-globe-americas"></i> TravelLAH
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Destination.html">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="Traveltips.html">Travel Tips</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Aboutus.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-3 fw-bold mb-4 animate-fade-in">Travel Tips & Guides</h1>
+            <p class="lead mb-5 animate-fade-in delay-1">Expert advice for smarter, safer, and more enjoyable travels</p>
+            <a href="#flight-booking" class="btn btn-explore animate-fade-in delay-2">Explore Tips</a>
+        </div>
+    </section>
+
+    <!-- Flight Booking Tips Section -->
+    <section id="flight-booking" class="tips-section">
+        <div class="container">
+            <h2 class="section-title">Flight Booking Tips</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card tip-card">
+                        <img src='picture/tt1.jpg' class="card-img-top" alt="Best time to book">
+                        <div class="card-body">
+                            <h5 class="card-title">Best Time to Book</h5>
+                            <p>Finding the perfect time to book your flights can save you hundreds of dollars.</p>
+                            <ul class="tip-list">
+                                <li>Book 3-4 months in advance for international flights</li>
+                                <li>Tuesdays and Wednesdays are often the cheapest days to fly</li>
+                                <li>Use incognito browsing mode to avoid price tracking</li>
+                                <li>Set price alerts for your desired destinations</li>
+                                <li>Consider flying during shoulder seasons for better deals</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card tip-card">
+                        <img src='picture/tt2.png' class="card-img-top" alt="Fare comparison">
+                        <div class="card-body">
+                            <h5 class="card-title">Finding the Best Fares</h5>
+                            <p>Strategies to ensure you're getting the best possible flight deals.</p>
+                            <ul class="tip-list">
+                                <li>Compare across multiple booking platforms</li>
+                                <li>Check airline websites directly for exclusive offers</li>
+                                <li>Consider nearby airports for better deals</li>
+                                <li>Look for error fares and flash sales</li>
+                                <li>Use flexible date search to find cheaper days</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card tip-card">
+                        <img src='picture/tt3.jpg' class="card-img-top" alt="Loyalty programs">
+                        <div class="card-body">
+                            <h5 class="card-title">Maximizing Miles & Points</h5>
+                            <p>How to make airline loyalty programs work for you.</p>
+                            <ul class="tip-list">
+                                <li>Join frequent flyer programs even before your first flight</li>
+                                <li>Consider airline credit cards with sign-up bonuses</li>
+                                <li>Focus on one alliance to reach status faster</li>
+                                <li>Learn to transfer points between programs strategically</li>
+                                <li>Use points for premium cabin upgrades for better value</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destination Guides Section -->
+    <section id="destination-guides" class="tips-section bg-light">
+        <div class="container">
+            <h2 class="section-title">Destination Guides</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card tip-card">
+                        <img src='picture/tt4.webp' class="card-img-top" alt="Southeast Asia">
+                        <div class="card-body">
+                            <h5 class="card-title">Southeast Asia Explorer</h5>
+                            <p>Navigate the vibrant cultures and stunning landscapes of Southeast Asia.</p>
+                            <ul class="tip-list">
+                                <li>Best time to visit: November to February (dry season)</li>
+                                <li>Must-visit countries: Thailand, Vietnam, Indonesia</li>
+                                <li>Street food is safe in most tourist areas - look for busy stalls</li>
+                                <li>Budget around $30-50 USD per day for backpacking</li>
+                                <li>Learn basic local greetings for each country you visit</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card tip-card">
+                        <img src= 'picture/tt5.jpg' class="card-img-top" alt="European travels">
+                        <div class="card-body">
+                            <h5 class="card-title">European Adventures</h5>
+                            <p>Tips for navigating Europe's diverse countries and rich cultural heritage.</p>
+                            <ul class="tip-list">
+                                <li>Consider Eurail passes for multi-country trips</li>
+                                <li>Book major museums and attractions in advance</li>
+                                <li>Visit Eastern Europe for better value destinations</li>
+                                <li>Learn basic phrases in the local language</li>
+                                <li>Avoid tourist trap restaurants (look for locals dining)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card tip-card">
+                        <img src= 'picture/tt6.jpg' class="card-img-top" alt="Island getaways">
+                        <div class="card-body">
+                            <h5 class="card-title">Island Getaways</h5>
+                            <p>Find your perfect tropical paradise with these island destination tips.</p>
+                            <ul class="tip-list">
+                                <li>Best Maldives alternatives: Philippines, Thailand, Malaysia</li>
+                                <li>Consider shoulder seasons for fewer crowds</li>
+                                <li>Pack reef-safe sunscreen for marine conservation</li>
+                                <li>Research island transportation options beforehand</li>
+                                <li>Look for all-inclusive deals for better value</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packing Essentials Section -->
+    <section id="packing-essentials" class="tips-section">
+        <div class="container">
+            <h2 class="section-title">Packing Essentials</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card tip-card">
+                        <img src='picture/tt7.jpg' class="card-img-top" alt="Packing clothes">
+                        <div class="card-body">
+                            <h5 class="card-title">Clothing Essentials</h5>
+                            <p>Smart packing strategies to maximize space and minimize weight.</p>
+                            <ul class="tip-list">
+                                <li>Pack clothing in neutral colors that mix and match</li>
+                                <li>Roll clothes instead of folding to save space</li>
+                                <li>Use packing cubes to organize and compress</li>
+                                <li>Pack for one week maximum, plan to do laundry</li>
+                                <li>Wear your bulkiest items during travel</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card tip-card">
+                        <img src= 'picture/tt8.webp' class="card-img-top" alt="Tech essentials">
+                        <div class="card-body">
+                            <h5 class="card-title">Tech Essentials</h5>
+                            <p>Must-have gadgets and tech accessories for modern travelers.</p>
+                            <ul class="tip-list">
+                                <li>Universal travel adapter with USB ports</li>
+                                <li>Portable charger/power bank (at least 10,000mAh)</li>
+                                <li>Noise-cancelling headphones for flights</li>
+                                <li>Backup phone/camera memory cards</li>
+                                <li>E-reader to replace heavy books</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card tip-card">
+                        <img src= 'picture/tt9.jpg' class="card-img-top" alt="Health essentials">
+                        <div class="card-body">
+                            <h5 class="card-title">Health & Wellness Kit</h5>
+                            <p>Essential items to keep you healthy and comfortable while traveling.</p>
+                            <ul class="tip-list">
+                                <li>Basic medications (pain relievers, antacids, etc.)</li>
+                                <li>First aid supplies (bandages, antiseptic wipes)</li>
+                                <li>Hand sanitizer and disinfectant wipes</li>
+                                <li>Rehydration packets for hot climates</li>
+                                <li>Sleep mask and earplugs for better rest</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                    <h5>TravelLAH</h5>
+                    <p>Discover the World, the LAH Way.</p>
+                    <p class="mb-4">Your trusted partner in creating unforgettable travel experiences and adventures around the globe.</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/groups/808466519338641"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/TravelAndLove"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/travel/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@IslandHopperTV/videos"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="quick-links">
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="Destination.html">Destinations</a></li>
+                        <li><a href="Traveltips.html">Travel Tips</a></li>
+                        <li><a href="Aboutus.html">About Us</a></li>
+                        <li><a href="contactus.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-5 col-md-12">
+                    <h5>Contact Info</h5>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Jalan Universiti 31900 Kampar,Perak</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+605-468 8888</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@TravelLAH.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 TravelLAH. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/cookies.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
